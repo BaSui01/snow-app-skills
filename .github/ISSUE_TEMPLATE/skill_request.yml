@@ -1,0 +1,61 @@
+name: Skill request
+description: Propose a new skill or a behavior change to an existing one.
+title: "[skill] "
+labels: ["enhancement"]
+body:
+  - type: input
+    id: skill-name
+    attributes:
+      label: Skill name
+      description: Existing skill to change, or a proposed id in kebab-case.
+      placeholder: plan-execute
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Which failure mode does this address? Describe what goes wrong today.
+    validations:
+      required: true
+  - type: input
+    id: trigger
+    attributes:
+      label: Trigger
+      description: The phrase or situation that should select this skill, and what should not.
+      placeholder: "Use when ... Do not use for ..."
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Proposed behavior
+      description: Steps, stop conditions, and what the skill reports. Keep it to one job.
+    validations:
+      required: true
+  - type: dropdown
+    id: boundary
+    attributes:
+      label: Boundary
+      description: The strongest side effect the skill needs.
+      options:
+        - Read-only research
+        - Writes files in the workspace
+        - Runs commands or builds
+        - Calls external services
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Example
+      description: A short before/after, or a sample request and the expected outcome.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: The skill does one job and can compose with existing skills.
+          required: true
+        - label: No machine-specific paths, credentials, or private project names.
+          required: true
