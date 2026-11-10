@@ -45,6 +45,17 @@ See [WORKFLOW.md](WORKFLOW.md) for three end-to-end recipes and the exact prompt
 | [`handoff`](skills/handoff/SKILL.md) | Session ending, another agent continues | Compact state, decisions and next step |
 | [`retro`](skills/retro/SKILL.md) | "retro", "what should we improve" | Environment improvements, most severe first |
 
+## Recommended sets
+
+Do not install all seven by default; the descriptions compete in the skill list.
+
+| Set | Skills | Use when |
+| --- | --- | --- |
+| Minimal | `grilling`, `plan-execute` | Most feature work |
+| Debugging | `grilling`, `plan-execute`, `diagnosing-bugs` | You also chase bugs |
+| Docs-heavy | `grilling`, `grill-with-docs`, `plan-execute`, `retro` | Design decisions must be recorded |
+| Full | all seven | You want the whole loop and accept the extra descriptions |
+
 ## Install
 
 ### Snow App
@@ -110,6 +121,7 @@ snow-app-skills/
 │   ├── ISSUE_TEMPLATE/
 │   ├── PULL_REQUEST_TEMPLATE.md
 │   └── workflows/
+│       ├── release.yml
 │       └── validate.yml
 ├── assets/
 │   ├── banner.svg

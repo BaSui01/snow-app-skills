@@ -32,6 +32,14 @@ Before opening a pull request, test three cases:
 2. **Negative**: an unrelated request does not select it.
 3. **Permission boundary**: when a required tool is unavailable, the skill stops and reports the gap instead of working around it.
 
+## Release
+
+1. Move the `Unreleased` items in `CHANGELOG.md` under the new version.
+2. Commit and push to `main`; the `validate` workflow must pass.
+3. Tag and push: `git tag vX.Y.Z && git push origin vX.Y.Z`.
+4. The `release` workflow creates the GitHub Release with generated notes.
+5. Verify the release, then install one skill from the tag to prove it works.
+
 ## Pull requests
 
 - One skill per pull request when possible.

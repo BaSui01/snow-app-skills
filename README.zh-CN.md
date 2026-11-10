@@ -45,6 +45,17 @@
 | [`handoff`](skills/handoff/SKILL.md) | 会话结束，换 Agent 继续 | 压缩状态、决策与下一步 |
 | [`retro`](skills/retro/SKILL.md) | 「复盘」「有什么可改进」 | 环境改进建议，最严重的排在前面 |
 
+## 推荐组合
+
+不要默认全装，七个技能的 description 会在技能列表里互相竞争。
+
+| 组合 | 技能 | 适用 |
+| --- | --- | --- |
+| 最小 | `grilling`、`plan-execute` | 大多数功能开发 |
+| 调试 | `grilling`、`plan-execute`、`diagnosing-bugs` | 需要同时查 bug |
+| 重文档 | `grilling`、`grill-with-docs`、`plan-execute`、`retro` | 设计决策必须留档 |
+| 完整 | 全部七个 | 想要完整闭环，接受额外描述 |
+
 ## 安装
 
 ### Snow App
@@ -110,6 +121,7 @@ snow-app-skills/
 │   ├── ISSUE_TEMPLATE/
 │   ├── PULL_REQUEST_TEMPLATE.md
 │   └── workflows/
+│       ├── release.yml
 │       └── validate.yml
 ├── assets/
 │   ├── banner.svg

@@ -52,14 +52,36 @@ for (const id of skillIds) {
   }
   const frontmatter = text.slice(4, end);
 
+  const allowedKeys = new Set([
+    "name",
+    "description",
+    "enable",
+    "allowed-tools",
+  ]);
+  const keys = frontmatter
+    .split("\n")
+    .filter((line) => /^[A-Za-z0-9_-]+:/.test(line))
+    .map((line) => line.split(":")[0].trim());
+  for (const key of keys) {
+    if (!allowedKeys.has(key)) {
+      errors.push(`${id}: unsupported frontmatter field "${key}"`);
+    }
+  }
+
   const name = /^name:\s*(.+)$/m
     .exec(frontmatter)?.[1]
     ?.trim()
     .replace(/^["']|["']$/g, "");
-  const description = /^description:\s*(.+)$/m
-    .exec(frontmatter)?.[1]
-    ?.trim()
-    .replace(/^["']|["']$/g, "");
+  const descriptionRaw = /^description:\s*(.*)$/m.exec(frontmatter)?.[1]?.trim() ?? "";
+  const description = descriptionRaw.replace(/^["']|["']$/g, "");
+  const enable = /^enable:\s*(.*)$/m.exec(frontmatter)?.[1]?.trim() ?? "";
+
+  if (enable && !/^(true|false)$/i.test(enable)) {
+    errors.push(`${id}: enable must be true or false`);
+  }
+  if (descriptionRaw.startsWith("|") || descriptionRaw.startsWith(">")) {
+    errors.push(`${id}: description must be a single line`);
+  }
 
   if (name !== id) {
     errors.push(`${id}: name "${name ?? ""}" does not match the folder name`);

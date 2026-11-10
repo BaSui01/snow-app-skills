@@ -41,6 +41,13 @@ Run `handoff` when the session ends with work still open. The document must name
 
 Run `retro` after a difficult session, or once a week. It reviews the environment rather than the product: navigation, automated checks, standards, steering files, tool economy, and skills that misfired. Apply changes only after the user confirms.
 
+## What can be automated
+
+- **Validation**: every push and pull request runs `validate.yml`.
+- **Release**: pushing a `v*` tag runs `release.yml`, which creates the GitHub Release.
+- **Not automatable**: the grilling interview, plan approval and per-batch gates. They need the user's decisions and one continuous context; do not chain them into a parallel workflow.
+- **Optional scheduled check**: a recurring task can run the validator and open an issue when it fails. It cannot replace the interview or the gates.
+
 ## Anti-patterns
 
 - Interviewing and editing at the same time.
