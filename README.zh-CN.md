@@ -2,7 +2,7 @@
 
 ![Snow App Skills](assets/banner.svg)
 
-**面向 [Snow App](https://github.com/zhaoxuya520/snow-app) 的小型、可组合 Agent 技能。**
+**面向 [Snow App](https://github.com/MayDay-wpf/snow-app) 的小型、可组合 Agent 技能。**
 
 [![validate](https://github.com/BaSui01/snow-app-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/BaSui01/snow-app-skills/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-38bdf8.svg)](LICENSE)
@@ -35,7 +35,7 @@
 
 | 技能 | 触发场景 | 做什么 |
 | --- | --- | --- |
-| [`grilling`](skills/grilling/SKILL.md) | 「 grill 我 」「压测这个方案」 | 按设计树逐轮提问，一次问完已解锁的问题，每题附推荐答案 |
+| [`grilling`](skills/grilling/SKILL.md) | 「grill 我」「压测这个方案」 | 按设计树逐轮提问，一次问完已解锁的问题，每题附推荐答案 |
 | [`grill-me`](skills/grill-me/SKILL.md) | 明确说「grill me」 | 别名入口，加载 `grilling` |
 | [`grill-with-docs`](skills/grill-with-docs/SKILL.md) | 方案值得写下来 | 拷问的同时维护术语表与 ADR |
 | [`plan-execute`](skills/plan-execute/SKILL.md) | 「开始执行这个计划」「重构这个模块」 | 冻结批次、跟踪待办、每批门禁 |
