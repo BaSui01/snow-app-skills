@@ -1,60 +1,78 @@
-# Snow App Skills
+<div align="center">
 
-Small, composable agent skills for [Snow App](https://github.com/zhaoxuya520/snow-app). Each skill does one job, uses Snow App's native tools, and can be combined with the others.
+![Snow App Skills](assets/banner.svg)
 
-## Principles
+**Small, composable agent skills for [Snow App](https://github.com/zhaoxuya520/snow-app).**
 
-- Small and composable. One skill, one job.
-- Facts belong to the agent, decisions belong to the user.
-- No silent assumptions and no one-shot refactors.
-- Verify against real code and real logs, never against guesses.
-- Write down what was decided, so the next session does not rediscover it.
+[![License: MIT](https://img.shields.io/badge/license-MIT-38bdf8.svg)](LICENSE)
+![Skills](https://img.shields.io/badge/skills-7-8b5cf6.svg)
+![Platform](https://img.shields.io/badge/platform-Snow%20App-0ea5e9.svg)
+![PRs welcome](https://img.shields.io/badge/PRs-welcome-22c55e.svg)
+
+</div>
+
+---
+
+Most agent failures are not model failures. They are alignment failures, verification failures, and context failures. These skills attack those three directly: settle the decisions first, build in small gated batches, diagnose before fixing, and leave a handoff when the session ends.
+
+## Flow
+
+```mermaid
+flowchart LR
+    A["grilling<br/>grill-with-docs"] --> B["plan-execute"]
+    B --> C["diagnosing-bugs"]
+    C --> B
+    B --> D["handoff"]
+    D --> A
+    E["retro"] -. improves .-> A
+    E -. improves .-> B
+```
+
+| Stage | Skill | You get |
+| --- | --- | --- |
+| Align | `grilling` / `grill-me` | Every design branch decided by you before code exists |
+| Align + write down | `grill-with-docs` | The same interview, plus `GLOSSARY.md` and ADRs |
+| Build | `plan-execute` | Frozen batches, a todo list, per-batch gates, recorded results |
+| Fix | `diagnosing-bugs` | Root cause with evidence, minimal fix, verification |
+| Continue later | `handoff` | State, decisions, open questions and the next first step |
+| Improve | `retro` | Prioritized fixes to rules, checks, skills and tooling |
 
 ## Skills
 
 | Skill | Trigger | What it does |
 | --- | --- | --- |
-| [`grilling`](skills/grilling/SKILL.md) | "grill me", "pressure-test this plan" | Design-tree interview in rounds, each question with a recommended answer, until the frontier is empty |
+| [`grilling`](skills/grilling/SKILL.md) | "grill me", "pressure-test this plan" | Design-tree interview in rounds, one question set at a time, each with a recommended answer |
 | [`grill-me`](skills/grill-me/SKILL.md) | Explicit "grill me" | Alias entry that loads `grilling` |
-| [`grill-with-docs`](skills/grill-with-docs/SKILL.md) | A plan that must be written down | Grilling plus glossary and ADR upkeep in the repository |
-| [`plan-execute`](skills/plan-execute/SKILL.md) | "start executing this plan", "refactor this module" | Freeze batches and gates, track them in the todo list, implement and verify batch by batch |
-| [`diagnosing-bugs`](skills/diagnosing-bugs/SKILL.md) | A bug or performance regression | Reproduce, narrow the layer, instrument, fix the root cause, verify |
-| [`handoff`](skills/handoff/SKILL.md) | Session ending, another agent continues | Compact state, decisions and next step into a handoff document |
-| [`retro`](skills/retro/SKILL.md) | "retro", "what should we improve" | Propose prioritized improvements to the agent environment after a session |
+| [`grill-with-docs`](skills/grill-with-docs/SKILL.md) | A plan worth writing down | Grilling plus glossary and ADR upkeep |
+| [`plan-execute`](skills/plan-execute/SKILL.md) | "start executing this plan", "refactor this module" | Batch freeze, todo tracking, per-batch gates |
+| [`diagnosing-bugs`](skills/diagnosing-bugs/SKILL.md) | A bug or performance regression | Reproduce, narrow the layer, instrument, fix the root cause |
+| [`handoff`](skills/handoff/SKILL.md) | Session ending, another agent continues | Compact state, decisions and next step |
+| [`retro`](skills/retro/SKILL.md) | "retro", "what should we improve" | Environment improvements, most severe first |
 
-## Recommended flow
-
-```mermaid
-flowchart LR
-    A[grilling / grill-with-docs] --> B[plan-execute]
-    B --> C[diagnosing-bugs when something breaks]
-    B --> D[handoff when the session ends]
-    C --> B
-    D --> A
-    E[retro] -.improves.-> A
-    E -.improves.-> B
-```
-
-`grilling` settles the decisions, `plan-execute` builds them in gated batches, `diagnosing-bugs` handles failures, `handoff` carries state across sessions, and `retro` improves the environment.
-
-## Installation
+## Install
 
 ### Snow App
 
-1. Open **Settings -> Skills**.
-2. Install from GitHub with repository `BaSui01/snow-app-skills` and the subdirectory `skills/<skill-name>`.
-3. Enable the skill and refresh the tool list.
+1. Open **Settings → Skills**.
+2. Choose to install from GitHub.
+3. Repository: `BaSui01/snow-app-skills`
+4. Subdirectory: `skills/<skill-name>` (for example `skills/plan-execute`).
+5. Enable it, then refresh the tool list.
 
-Or copy a folder into one of the scanned directories:
+The install record pins a commit SHA. Reinstall to pick up updates.
 
-```text
-~/.snow/skills/<skill-name>/SKILL.md        # available in every project
-<project>/.snow/skills/<skill-name>/SKILL.md # project only
+### Manual
+
+```bash
+git clone https://github.com/BaSui01/snow-app-skills.git
+cp -r snow-app-skills/skills/plan-execute ~/.snow/skills/
 ```
 
-### Frontmatter
+Global skills live in `~/.snow/skills/<name>`; project-only skills live in `<project>/.snow/skills/<name>`.
 
-Snow App parses only these fields:
+## Compatibility
+
+Snow App parses only these frontmatter fields:
 
 ```yaml
 ---
@@ -66,12 +84,26 @@ allowed-tools:
 ---
 ```
 
-`disable-model-invocation` and `agents/openai.yaml` belong to other agents; Snow App ignores them. If a skill must only run on explicit request, say so in the description.
+`disable-model-invocation` and `agents/openai.yaml` belong to other agents and are ignored by Snow App. A skill that must only run on explicit request says so in its description. The bodies use Snow App tool names (`skills-skill-execute`, `user-interaction-askUserQuestion`, `todo-todo-manage`, `memory-search`, `memory-save`); on other agents, map them to the local equivalents.
 
-## Portability
+## Repository layout
 
-The bodies use Snow App tool names (`skills-skill-execute`, `user-interaction-askUserQuestion`, `todo-todo-manage`, `memory-search`, `memory-save`, `config-logs-read`). On other agents, map them to the equivalents: interactive question tool, todo list, memory store, log reader. The rules themselves are platform-neutral.
+```text
+snow-app-skills/
+├── README.md
+├── CONTRIBUTING.md
+├── LICENSE
+├── assets/
+│   └── banner.svg
+└── skills/
+    └── <skill-name>/
+        └── SKILL.md
+```
 
 ## Contributing
 
-Keep skills short, write them in English, and do not encode one machine's paths or secrets. Run the positive, negative and permission-boundary checks described in the Snow App skill authoring guide before opening a pull request.
+Issues and pull requests are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) first: skills must stay small, generic, English, and free of machine-specific paths or secrets.
+
+## License
+
+[MIT](LICENSE)
