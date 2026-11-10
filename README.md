@@ -10,6 +10,8 @@
 ![Platform](https://img.shields.io/badge/platform-Snow%20App-0ea5e9.svg)
 ![PRs welcome](https://img.shields.io/badge/PRs-welcome-22c55e.svg)
 
+**English** | [简体中文](README.zh-CN.md)
+
 </div>
 
 ---
@@ -18,16 +20,7 @@ Most agent failures are not model failures. They are alignment failures, verific
 
 ## Flow
 
-```mermaid
-flowchart LR
-    A["grilling<br/>grill-with-docs"] --> B["plan-execute"]
-    B --> C["diagnosing-bugs"]
-    C --> B
-    B --> D["handoff"]
-    D --> A
-    E["retro"] -. improves .-> A
-    E -. improves .-> B
-```
+![Workflow](assets/flow.svg)
 
 | Stage | Skill | You get |
 | --- | --- | --- |
@@ -94,7 +87,7 @@ CI runs `scripts/validate-skills.mjs` on every push and pull request. It checks 
 - every `skills/*/SKILL.md` has closed frontmatter with `name` and `description`;
 - `name` matches the folder id;
 - the description is long enough to be a trigger and under 600 characters;
-- every skill is linked from this README;
+- every skill is linked from `README.md` and, when present, `README.zh-CN.md`;
 - no absolute machine paths or obvious credentials slipped in.
 
 Run it locally:
@@ -112,10 +105,13 @@ Releases follow Semantic Versioning. Tags mark installable states; Snow App's Gi
 ```text
 snow-app-skills/
 ├── .github/
+│   ├── ISSUE_TEMPLATE/
+│   ├── PULL_REQUEST_TEMPLATE.md
 │   └── workflows/
 │       └── validate.yml
 ├── assets/
-│   └── banner.svg
+│   ├── banner.svg
+│   └── flow.svg
 ├── scripts/
 │   └── validate-skills.mjs
 ├── skills/
@@ -124,7 +120,8 @@ snow-app-skills/
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
 ├── LICENSE
-└── README.md
+├── README.md
+└── README.zh-CN.md
 ```
 
 ## Contributing
