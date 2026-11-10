@@ -7,6 +7,12 @@ description: Use when a bug or performance regression needs disciplined diagnosi
 
 Goal: find the root cause before changing code. Guessing, retrying, swallowing errors and fake success are out of bounds.
 
+## When not to use
+
+- The work is a feature or a refactor, not a failure: use `plan-execute`.
+- There is no reproducible symptom and the user cannot provide one: ask for a repro instead of guessing.
+- The root cause is already confirmed and the fix is trivial: fix it and verify.
+
 ## 1. Reproduce
 
 - Capture the real entry point, exact steps, environment, and expected versus actual behavior.

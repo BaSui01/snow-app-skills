@@ -7,6 +7,12 @@ description: Use when the user asks for a retrospective on a session. Reviews ho
 
 Improve the agent's environment so the next session goes better. Do not re-litigate the product code; look at how the work was done.
 
+## When not to use
+
+- The user wants a code review: use a review skill or a review sub-agent.
+- There is no session evidence or log to inspect: ask for the session first.
+- You intend to apply changes immediately: propose them and wait for confirmation.
+
 ## 1. Read the primary sources
 
 - The session transcript and its tool results.

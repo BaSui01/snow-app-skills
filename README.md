@@ -22,6 +22,8 @@ Most agent failures are not model failures. They are alignment failures, verific
 
 ![Workflow](assets/flow.svg)
 
+See [WORKFLOW.md](WORKFLOW.md) for three end-to-end recipes and the exact prompts to use at each step.
+
 | Stage | Skill | You get |
 | --- | --- | --- |
 | Align | `grilling` / `grill-me` | Every design branch decided by you before code exists |
@@ -117,11 +119,15 @@ snow-app-skills/
 ├── skills/
 │   └── <skill-name>/
 │       └── SKILL.md
+├── templates/
+│   └── skill/
+│       └── SKILL.md
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
 ├── LICENSE
 ├── README.md
-└── README.zh-CN.md
+├── README.zh-CN.md
+└── WORKFLOW.md
 ```
 
 ## Contributing

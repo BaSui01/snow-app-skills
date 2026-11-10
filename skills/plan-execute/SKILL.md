@@ -7,6 +7,12 @@ description: Use when a converged plan must be executed. Freeze batch boundaries
 
 Precondition: the plan is converged (grilling produced agreement, or the user gave an explicit scope and acceptance criteria). If not, go back and ask; never interview and edit at the same time.
 
+## When not to use
+
+- The plan is still being debated: go back to `grilling` first.
+- The change is a single file or a one-line fix: do it directly.
+- You only need the cause of a failure: use `diagnosing-bugs`.
+
 ## 1. Freeze the batches
 
 Write a batch table in the conversation before touching code. Each batch states:

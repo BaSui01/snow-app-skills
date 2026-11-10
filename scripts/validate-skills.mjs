@@ -35,7 +35,7 @@ for (const id of skillIds) {
   const file = join(skillsDir, id, "SKILL.md");
   let text;
   try {
-    text = readFileSync(file, "utf8");
+    text = readFileSync(file, "utf8").replace(/\r\n/g, "\n");
   } catch {
     errors.push(`${id}: SKILL.md is missing`);
     continue;

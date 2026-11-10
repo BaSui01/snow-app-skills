@@ -22,6 +22,8 @@
 
 ![工作流](assets/flow.svg)
 
+三条完整配方与每一步可直接照抄的提示词见 [WORKFLOW.md](WORKFLOW.md)。
+
 | 阶段 | 技能 | 产出 |
 | --- | --- | --- |
 | 对齐 | `grilling` / `grill-me` | 写代码之前，由你拍板每一条设计分支 |
@@ -117,11 +119,15 @@ snow-app-skills/
 ├── skills/
 │   └── <skill-name>/
 │       └── SKILL.md
+├── templates/
+│   └── skill/
+│       └── SKILL.md
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
 ├── LICENSE
 ├── README.md
-└── README.zh-CN.md
+├── README.zh-CN.md
+└── WORKFLOW.md
 ```
 
 ## 贡献

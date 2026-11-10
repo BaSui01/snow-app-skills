@@ -7,6 +7,12 @@ description: Use when a plan, decision, or idea needs stress-testing. Runs a des
 
 Goal: grind the plan until nothing is silently assumed. Done means every branch of the design tree has been visited, the user has decided each open point, and they explicitly confirm the shared understanding.
 
+## When not to use
+
+- The answer is a fact or a file lookup, not a decision: look it up instead.
+- The decision is already settled and the user wants implementation: use `plan-execute`.
+- The task is a one-line fix with no design branch: just do it.
+
 ## Hard boundaries
 
 - Interview and research only. No code, config, database or Git changes, no side-effecting commands. Implementation starts only after the user confirms.

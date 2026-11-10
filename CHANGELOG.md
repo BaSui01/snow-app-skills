@@ -6,12 +6,17 @@ All notable changes to this repository are documented here. The format follows [
 
 ### Added
 
+- `WORKFLOW.md` with three end-to-end recipes: feature, bug fix, refactor.
+- `templates/skill/SKILL.md` as the starting point for new skills.
+- Every skill now documents a `When not to use` section.
 - Chinese README (`README.zh-CN.md`) with a language switch and a shared SVG workflow diagram.
 - Issue forms for bug reports and skill requests, plus a pull request template.
 
 ### Changed
 
+- README (both languages) and CONTRIBUTING link the workflow guide and template.
 - The README workflow is now a static SVG that renders everywhere instead of a Mermaid block.
+- `scripts/validate-skills.mjs` normalizes CRLF so validation passes on Windows checkouts.
 - `scripts/validate-skills.mjs` also requires each skill to be linked from `README.zh-CN.md` when that file exists.
 
 ## [0.1.0] - 2026-11-10

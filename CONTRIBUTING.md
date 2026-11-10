@@ -1,10 +1,10 @@
 # Contributing
 
-Thanks for improving these skills. Keep the bar high: a skill is a procedure, not an essay.
+Thanks for improving these skills. Keep the bar high: a skill is a procedure, not an essay. See [WORKFLOW.md](WORKFLOW.md) for how the skills compose.
 
 ## Add or change a skill
 
-1. Create `skills/<skill-name>/SKILL.md`. The folder name is the skill id.
+1. Start from `templates/skill/SKILL.md`, then create `skills/<skill-name>/SKILL.md`. The folder name is the skill id.
 2. Use this frontmatter:
 
    ```yaml

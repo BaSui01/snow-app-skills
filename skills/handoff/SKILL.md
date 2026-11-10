@@ -7,6 +7,12 @@ description: Use when another agent or a later session must continue the work. C
 
 Write a handoff document that lets a fresh session continue without replaying this conversation.
 
+## When not to use
+
+- The task can be finished now: finish it instead of handing it off.
+- You would be copying a diff, spec or issue: reference it by path or URL instead.
+- Secrets or personal data are involved and cannot be redacted: do not write the handoff.
+
 ## Where to save
 
 - Preferred: a project memo, so the next session can find it without filesystem access.

@@ -7,6 +7,12 @@ description: Use when a plan must be stress-tested and the outcome should be wri
 
 First run `skills-skill-execute` with `grilling` and follow it end to end. This skill only adds the documentation discipline below; it never relaxes the interview rules, the tool bans, or the "wait for answers" rule.
 
+## When not to use
+
+- No durable decision is expected (throwaway spike): use `grilling` alone.
+- The repository has no documentation convention and the user does not want one created: skip the docs half.
+- The work is pure fact-finding with no decision to record: just answer it.
+
 ## Rules to respect
 
 - Verify facts against code, not against docs. Evidence order: reachable entry point, then cross-process contract, then implementation and storage. Settings truth comes from the configuration source, never from a guessed file.
