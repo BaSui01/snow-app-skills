@@ -1,9 +1,8 @@
-import { readdirSync, readFileSync, statSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 
 const root = process.argv[2] ? process.argv[2] : process.cwd();
 const skillsDir = join(root, "skills");
-const readmePath = join(root, "README.md");
 const errors = [];
 
 const skillIds = readdirSync(skillsDir).filter((entry) =>
@@ -13,11 +12,14 @@ if (skillIds.length === 0) {
   errors.push("skills/: no skill directories found");
 }
 
-let readme = "";
-try {
-  readme = readFileSync(readmePath, "utf8");
-} catch {
-  errors.push("README.md: file is missing");
+const readmes = [];
+for (const name of ["README.md", "README.zh-CN.md"]) {
+  const file = join(root, name);
+  if (existsSync(file)) {
+    readmes.push({ name, text: readFileSync(file, "utf8") });
+  } else if (name === "README.md") {
+    errors.push("README.md: file is missing");
+  }
 }
 
 const forbidden = [
@@ -69,8 +71,11 @@ for (const id of skillIds) {
   } else if (description.length > 600) {
     errors.push(`${id}: description is longer than 600 characters`);
   }
-  if (!readme.includes(`skills/${id}/SKILL.md`)) {
-    errors.push(`${id}: README does not link skills/${id}/SKILL.md`);
+
+  for (const { name: readmeName, text: readme } of readmes) {
+    if (!readme.includes(`skills/${id}/SKILL.md`)) {
+      errors.push(`${id}: ${readmeName} does not link skills/${id}/SKILL.md`);
+    }
   }
 
   for (const [pattern, label] of forbidden) {
