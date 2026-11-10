@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="280" viewBox="0 0 1200 280" role="img" aria-label="Snow App Skills">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="0.55" stop-color="#111c2f"/>
+      <stop offset="1" stop-color="#0e2433"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="chip" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#12293b"/>
+      <stop offset="1" stop-color="#0d1f2e"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="280" fill="url(#bg)"/>
+
+  <g opacity="0.16" stroke="#38bdf8" stroke-width="1.4" fill="none">
+    <circle cx="1010" cy="140" r="70"/>
+    <circle cx="1010" cy="140" r="110"/>
+    <circle cx="1010" cy="140" r="150"/>
+    <path d="M1010 10v260M880 140h260M919 49l182 182M1101 49L919 231"/>
+  </g>
+
+  <g fill="none" stroke="url(#accent)" stroke-width="4" stroke-linecap="round">
+    <path d="M1010 76v128"/>
+    <path d="M955 108l110 64"/>
+    <path d="M1065 108l-110 64"/>
+    <path d="M1010 76l-24 24M1010 76l24 24M1010 204l-24-24M1010 204l24-24"/>
+    <path d="M955 108l32 6M955 108l6 32M1065 172l-32-6M1065 172l-6-32"/>
+    <path d="M955 172l32-6M955 172l6-32M1065 108l-32 6M1065 108l-6 32"/>
+  </g>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <text x="80" y="122" font-size="52" font-weight="700" fill="#f8fafc">Snow App Skills</text>
+    <text x="80" y="164" font-size="21" fill="#94a3b8">grill the plan · build in gated batches · diagnose the failure</text>
+
+    <g font-size="14" fill="#cbd5e1">
+      <rect x="80" y="196" width="82" height="30" rx="15" fill="url(#chip)" stroke="#1e4b63"/>
+      <text x="121" y="216" text-anchor="middle">grilling</text>
+      <rect x="172" y="196" width="108" height="30" rx="15" fill="url(#chip)" stroke="#1e4b63"/>
+      <text x="226" y="216" text-anchor="middle">plan-execute</text>
+      <rect x="290" y="196" width="116" height="30" rx="15" fill="url(#chip)" stroke="#1e4b63"/>
+      <text x="348" y="216" text-anchor="middle">diagnosing-bugs</text>
+      <rect x="416" y="196" width="76" height="30" rx="15" fill="url(#chip)" stroke="#1e4b63"/>
+      <text x="454" y="216" text-anchor="middle">handoff</text>
+    </g>
+  </g>
+</svg>
