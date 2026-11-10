@@ -4,6 +4,7 @@
 
 **Small, composable agent skills for [Snow App](https://github.com/zhaoxuya520/snow-app).**
 
+[![validate](https://github.com/BaSui01/snow-app-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/BaSui01/snow-app-skills/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-38bdf8.svg)](LICENSE)
 ![Skills](https://img.shields.io/badge/skills-7-8b5cf6.svg)
 ![Platform](https://img.shields.io/badge/platform-Snow%20App-0ea5e9.svg)
@@ -86,18 +87,44 @@ allowed-tools:
 
 `disable-model-invocation` and `agents/openai.yaml` belong to other agents and are ignored by Snow App. A skill that must only run on explicit request says so in its description. The bodies use Snow App tool names (`skills-skill-execute`, `user-interaction-askUserQuestion`, `todo-todo-manage`, `memory-search`, `memory-save`); on other agents, map them to the local equivalents.
 
+## Validation
+
+CI runs `scripts/validate-skills.mjs` on every push and pull request. It checks that:
+
+- every `skills/*/SKILL.md` has closed frontmatter with `name` and `description`;
+- `name` matches the folder id;
+- the description is long enough to be a trigger and under 600 characters;
+- every skill is linked from this README;
+- no absolute machine paths or obvious credentials slipped in.
+
+Run it locally:
+
+```bash
+node scripts/validate-skills.mjs
+```
+
+## Versioning
+
+Releases follow Semantic Versioning. Tags mark installable states; Snow App's GitHub install pins a commit SHA, so reinstall after a release to update. See [CHANGELOG.md](CHANGELOG.md).
+
 ## Repository layout
 
 ```text
 snow-app-skills/
-├── README.md
-├── CONTRIBUTING.md
-├── LICENSE
+├── .github/
+│   └── workflows/
+│       └── validate.yml
 ├── assets/
 │   └── banner.svg
-└── skills/
-    └── <skill-name>/
-        └── SKILL.md
+├── scripts/
+│   └── validate-skills.mjs
+├── skills/
+│   └── <skill-name>/
+│       └── SKILL.md
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── LICENSE
+└── README.md
 ```
 
 ## Contributing
