@@ -1,0 +1,70 @@
+name: Bug report
+description: A skill misbehaves, misses a trigger, or does something unsafe.
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Remove API keys, tokens and personal data before submitting.
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Skill
+      options:
+        - grilling
+        - grill-me
+        - grill-with-docs
+        - plan-execute
+        - diagnosing-bugs
+        - handoff
+        - retro
+        - other / repository
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened
+      description: Include the exact request and the observed behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Snow App version, model, and operating system.
+      placeholder: Snow App 1.x, model name, Windows 11
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: Paste only the relevant part, with secrets and personal data removed.
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues.
+          required: true
+        - label: I removed secrets and personal data from this report.
+          required: true
