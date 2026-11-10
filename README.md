@@ -2,7 +2,7 @@
 
 ![Snow App Skills](assets/banner.svg)
 
-**Small, composable agent skills for [Snow App](https://github.com/zhaoxuya520/snow-app).**
+**Small, composable agent skills for [Snow App](https://github.com/MayDay-wpf/snow-app).**
 
 [![validate](https://github.com/BaSui01/snow-app-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/BaSui01/snow-app-skills/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-38bdf8.svg)](LICENSE)
