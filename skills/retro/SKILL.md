@@ -1,6 +1,6 @@
 ---
 name: retro
-description: Use when the user asks for a retrospective on a session. Reviews how the agent worked, then proposes prioritized improvements to the environment: navigation, automated checks, standards, steering files, and tool economy.
+description: Use when the user asks for a retrospective or "what should we improve" after a difficult session, or when repeated mistakes suggest the environment is at fault. Reviews the session against logs, usage, hooks and check results, then proposes prioritized fixes to rules, checks, skills and tooling. Proposes only; applies after confirmation. Not a code review.
 ---
 
 # Retro
@@ -16,8 +16,10 @@ Improve the agent's environment so the next session goes better. Do not re-litig
 ## 1. Read the primary sources
 
 - The session transcript and its tool results.
-- The application log surface for errors, retries and wasted calls.
-- The project rules, skills, hooks, sub-agent configs and permission list that were in force.
+- `config-manage action=logs` filtered by level, module and time window; a temporary `requestLogging` session for API errors, retries and wasted calls.
+- `usage` totals and per-model rows, to see where tokens were actually spent.
+- Hook execution records and the effective hook, sub-agent, skill and permission configuration.
+- `.agents/notes/rejected/` for rejected paths that were proposed again, and `archived/` for notes that no longer match the code. Run `verify-notes` to see structural drift.
 - The repository's own check commands, CI workflow and contributor docs.
 
 ## 2. Look for candidates
@@ -29,6 +31,7 @@ Improve the agent's environment so the next session goes better. Do not re-litig
 - **Tool economy**: expensive or repeated calls, oversized outputs, token-inefficient custom tooling.
 - **Information access**: was a crucial piece of information unavailable? Logs, read-only service access, a diagnostic command.
 - **Skills**: did a skill trigger at the wrong time, miss a step, or carry stale paths? Propose a concrete edit.
+- **Decision notes**: did a non-trivial change ship without a note, did a note contradict the code, or did a check fail while nobody looked? Prefer wiring a check over writing a reminder.
 
 ## 3. Report
 

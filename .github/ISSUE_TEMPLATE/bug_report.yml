@@ -13,8 +13,7 @@ body:
       label: Skill
       options:
         - grilling
-        - grill-me
-        - grill-with-docs
+        - decision-notes
         - plan-execute
         - diagnosing-bugs
         - handoff

@@ -18,3 +18,5 @@ jobs:
           node-version: 20
       - name: Validate skills
         run: node scripts/validate-skills.mjs
+      - name: Verify decision notes
+        run: node scripts/verify-notes.mjs

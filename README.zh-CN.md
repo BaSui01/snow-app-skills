@@ -6,7 +6,7 @@
 
 [![validate](https://github.com/BaSui01/snow-app-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/BaSui01/snow-app-skills/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-38bdf8.svg)](LICENSE)
-![Skills](https://img.shields.io/badge/skills-7-8b5cf6.svg)
+![Skills](https://img.shields.io/badge/skills-8-8b5cf6.svg)
 ![Platform](https://img.shields.io/badge/platform-Snow%20App-0ea5e9.svg)
 ![PRs welcome](https://img.shields.io/badge/PRs-welcome-22c55e.svg)
 
@@ -26,10 +26,12 @@
 
 | 阶段 | 技能 | 产出 |
 | --- | --- | --- |
-| 对齐 | `grilling` / `grill-me` | 写代码之前，由你拍板每一条设计分支 |
-| 对齐并留档 | `grill-with-docs` | 同样的拷问，外加 `GLOSSARY.md` 与 ADR |
+| 对齐 | `grilling` | 写代码之前，由你拍板每一条设计分支 |
+| 对齐并留档 | `grilling` + `decision-notes` | 同样的拷问，外加 `.agents/notes/` 方案稿与 `GLOSSARY.md` |
+| 记录 | `decision-notes` | 路径即状态的决策笔记，含被否方案与脚本校验 |
 | 实现 | `plan-execute` | 冻结批次、待办清单、每批门禁、结果记录 |
 | 修复 | `diagnosing-bugs` | 有证据的根因、最小修复、验证结果 |
+| 验证 UI | `ui-verification` | 前后几何数值、截图、console 与 network 干净 |
 | 下次继续 | `handoff` | 状态、决策、未决问题和下一步第一个动作 |
 | 改进 | `retro` | 按严重程度排序的环境改进建议 |
 
@@ -38,23 +40,25 @@
 | 技能 | 触发场景 | 做什么 |
 | --- | --- | --- |
 | [`grilling`](skills/grilling/SKILL.md) | 「grill 我」「压测这个方案」 | 按设计树逐轮提问，一次问完已解锁的问题，每题附推荐答案 |
-| [`grill-me`](skills/grill-me/SKILL.md) | 明确说「grill me」 | 别名入口，加载 `grilling` |
-| [`grill-with-docs`](skills/grill-with-docs/SKILL.md) | 方案值得写下来 | 拷问的同时维护术语表与 ADR |
+| [`decision-notes`](skills/decision-notes/SKILL.md) | 非平凡决策、被取代的选择、缺陷复盘 | `.agents/notes/<lifecycle>/<class>/` 笔记、被否方案、`verify-notes` 校验 |
 | [`plan-execute`](skills/plan-execute/SKILL.md) | 「开始执行这个计划」「重构这个模块」 | 冻结批次、跟踪待办、每批门禁 |
 | [`diagnosing-bugs`](skills/diagnosing-bugs/SKILL.md) | 缺陷或性能回退 | 复现、收窄层级、插桩、定位根因 |
+| [`ui-verification`](skills/ui-verification/SKILL.md) | 布局、间距、颜色或响应式缺陷 | 量化几何、运行时证据、最小修改、同一路径复验 |
+| [`skill-install`](skills/skill-install/SKILL.md) | 技能链接，或安装/更新/卸载技能 | 核实来源、选择作用域、安装、回读结果 |
 | [`handoff`](skills/handoff/SKILL.md) | 会话结束，换 Agent 继续 | 压缩状态、决策与下一步 |
 | [`retro`](skills/retro/SKILL.md) | 「复盘」「有什么可改进」 | 环境改进建议，最严重的排在前面 |
 
 ## 推荐组合
 
-不要默认全装，七个技能的 description 会在技能列表里互相竞争。
+不要默认全装，八个技能的 description 会在技能列表里互相竞争。
 
 | 组合 | 技能 | 适用 |
 | --- | --- | --- |
 | 最小 | `grilling`、`plan-execute` | 大多数功能开发 |
 | 调试 | `grilling`、`plan-execute`、`diagnosing-bugs` | 需要同时查 bug |
-| 重文档 | `grilling`、`grill-with-docs`、`plan-execute`、`retro` | 设计决策必须留档 |
-| 完整 | 全部七个 | 想要完整闭环，接受额外描述 |
+| 重文档 | `grilling`、`decision-notes`、`plan-execute`、`retro` | 设计决策必须留档 |
+| 前端 | `plan-execute`、`ui-verification`、`diagnosing-bugs` | 像素、布局或响应式改动 |
+| 完整 | 全部八个 | 想要完整闭环，接受额外描述 |
 
 ## 安装
 
@@ -63,7 +67,7 @@
 1. 打开 **Settings → Skills**。
 2. 选择从 GitHub 安装。
 3. 仓库填 `BaSui01/snow-app-skills`。
-4. 子目录填 `skills/<技能名>`，例如 `skills/plan-execute`。
+4. 子目录填 `skills` 可一次发现全部技能；只装单个时填 `skills/<技能名>`。
 5. 启用后刷新工具列表。
 
 安装记录会固定一个 commit SHA，更新需要重新安装。

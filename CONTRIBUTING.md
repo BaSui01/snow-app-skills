@@ -19,12 +19,17 @@ Thanks for improving these skills. Keep the bar high: a skill is a procedure, no
 5. Do not encode machine-specific paths, credentials, tokens, or private project names.
 6. Add the skill to the table in `README.md`.
 
+## Record a decision
+
+A non-trivial change needs a note under `.agents/notes/`: behavior, architecture, cross-file contracts, process or tooling, testing strategy, or on-disk/wire/config formats. Start from `skills/decision-notes/templates/proposed.md`, keep the path `.agents/notes/proposed/<class>/YYYY-MM-DD-topic.md`, and move it to `implemented/<class>/` in the same pull request. Mechanical edits (formatting, rename, styling, tag, CRUD, behavior-neutral dependency patch) get no note. Run `node scripts/verify-notes.mjs` before opening the pull request; never keep a second decision system next to it.
+
 ## Quality bar
 
 - **Trigger**: the description makes the right situation obvious and excludes unrelated ones.
 - **Boundary**: read-only versus write, confirmation points, and forbidden actions are explicit.
 - **Failure**: the skill says where to stop and what to report, instead of retrying or hiding errors.
 - **Portability**: tool names are Snow App's; the rules stay meaningful on other agents.
+- **Record**: a non-trivial change leaves a decision note that passes `verify-notes`.
 
 Before opening a pull request, test three cases:
 

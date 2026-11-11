@@ -1,6 +1,23 @@
 ---
 name: grilling
-description: Use when a plan, decision, or idea needs stress-testing. Runs a design-tree interview in rounds, asking only unblocked questions with a recommended answer, until the frontier is empty and the user confirms shared understanding. Research and ask only; never change code.
+description: Use when a plan, design or scope needs stress-testing before code exists, including "grill me", "pressure-test this", "help me think it through", "should we", "how should we" and any change request whose decisions are still open. Runs a design-tree interview in rounds, one unblocked question set at a time, each with a recommended answer, until the frontier is empty and the user confirms. Read-only research and questions only; never write code, config or git state. Not for lookups, settled plans or one-line fixes.
+allowed-tools:
+  - filesystem-read
+  - grep-search
+  - grep-find
+  - codebase-search
+  - lsp-symbols
+  - lsp-references
+  - lsp-goto
+  - lsp-diagnostics
+  - todo-todo-manage
+  - memory-manage
+  - user-interaction-askUserQuestion
+  - sub-agents-activate
+  - sub-agents-continue
+  - sub-agents-getResult
+  - config-manage
+  - skills-skill-execute
 ---
 
 # Grilling
@@ -59,4 +76,7 @@ Frontier = decisions whose prerequisites are settled and that you can ask now wi
 The frontier is empty when every branch has been visited and nothing is silently assumed.
 
 Close with four items only: settled decisions, remaining risks and costs, dropped alternatives and why, suggested next verification.
+
+Before asking for the go-ahead, load `decision-notes` and write one `proposed` note: Problem, Proposal, Alternatives considered, Acceptance criteria, Risks. One note per decision area, not one per question. Skip the note only when the user explicitly says the decisions do not need to be kept, or when the change is mechanical. Settle cross-cutting terms in `GLOSSARY.md` only when a term is overloaded or used differently across modules: a glossary entry is a definition, not a decision.
+
 Then ask "Shared understanding reached - start implementing?" Do not act before an explicit yes.

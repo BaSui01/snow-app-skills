@@ -6,7 +6,7 @@
 
 [![validate](https://github.com/BaSui01/snow-app-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/BaSui01/snow-app-skills/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-38bdf8.svg)](LICENSE)
-![Skills](https://img.shields.io/badge/skills-7-8b5cf6.svg)
+![Skills](https://img.shields.io/badge/skills-8-8b5cf6.svg)
 ![Platform](https://img.shields.io/badge/platform-Snow%20App-0ea5e9.svg)
 ![PRs welcome](https://img.shields.io/badge/PRs-welcome-22c55e.svg)
 
@@ -26,10 +26,12 @@ See [WORKFLOW.md](WORKFLOW.md) for three end-to-end recipes and the exact prompt
 
 | Stage | Skill | You get |
 | --- | --- | --- |
-| Align | `grilling` / `grill-me` | Every design branch decided by you before code exists |
-| Align + write down | `grill-with-docs` | The same interview, plus `GLOSSARY.md` and ADRs |
+| Align | `grilling` | Every design branch decided by you before code exists |
+| Align + write down | `grilling` + `decision-notes` | The same interview, plus proposed notes under `.agents/notes/` and `GLOSSARY.md` |
+| Record | `decision-notes` | Folder-as-state notes with rejected alternatives and a script check |
 | Build | `plan-execute` | Frozen batches, a todo list, per-batch gates, recorded results |
 | Fix | `diagnosing-bugs` | Root cause with evidence, minimal fix, verification |
+| Verify UI | `ui-verification` | Before/after geometry, screenshots, console and network clean |
 | Continue later | `handoff` | State, decisions, open questions and the next first step |
 | Improve | `retro` | Prioritized fixes to rules, checks, skills and tooling |
 
@@ -38,23 +40,25 @@ See [WORKFLOW.md](WORKFLOW.md) for three end-to-end recipes and the exact prompt
 | Skill | Trigger | What it does |
 | --- | --- | --- |
 | [`grilling`](skills/grilling/SKILL.md) | "grill me", "pressure-test this plan" | Design-tree interview in rounds, one question set at a time, each with a recommended answer |
-| [`grill-me`](skills/grill-me/SKILL.md) | Explicit "grill me" | Alias entry that loads `grilling` |
-| [`grill-with-docs`](skills/grill-with-docs/SKILL.md) | A plan worth writing down | Grilling plus glossary and ADR upkeep |
+| [`decision-notes`](skills/decision-notes/SKILL.md) | A non-trivial decision, a superseded choice, or a defect lesson | `.agents/notes/<lifecycle>/<class>/` notes, rejected alternatives, `verify-notes` |
 | [`plan-execute`](skills/plan-execute/SKILL.md) | "start executing this plan", "refactor this module" | Batch freeze, todo tracking, per-batch gates |
 | [`diagnosing-bugs`](skills/diagnosing-bugs/SKILL.md) | A bug or performance regression | Reproduce, narrow the layer, instrument, fix the root cause |
+| [`ui-verification`](skills/ui-verification/SKILL.md) | A layout, spacing, color or responsive defect | Measured geometry, runtime evidence, smallest fix, re-verified on the same path |
+| [`skill-install`](skills/skill-install/SKILL.md) | A Skill link, or install/update/uninstall a Skill | Source verification, scope decision, install, read-back |
 | [`handoff`](skills/handoff/SKILL.md) | Session ending, another agent continues | Compact state, decisions and next step |
 | [`retro`](skills/retro/SKILL.md) | "retro", "what should we improve" | Environment improvements, most severe first |
 
 ## Recommended sets
 
-Do not install all seven by default; the descriptions compete in the skill list.
+Do not install all eight by default; the descriptions compete in the skill list.
 
 | Set | Skills | Use when |
 | --- | --- | --- |
 | Minimal | `grilling`, `plan-execute` | Most feature work |
 | Debugging | `grilling`, `plan-execute`, `diagnosing-bugs` | You also chase bugs |
-| Docs-heavy | `grilling`, `grill-with-docs`, `plan-execute`, `retro` | Design decisions must be recorded |
-| Full | all seven | You want the whole loop and accept the extra descriptions |
+| Docs-heavy | `grilling`, `decision-notes`, `plan-execute`, `retro` | Design decisions must be recorded |
+| Frontend | `plan-execute`, `ui-verification`, `diagnosing-bugs` | Pixel, layout or responsive work |
+| Full | all eight | You want the whole loop and accept the extra descriptions |
 
 ## Install
 
@@ -63,7 +67,7 @@ Do not install all seven by default; the descriptions compete in the skill list.
 1. Open **Settings → Skills**.
 2. Choose to install from GitHub.
 3. Repository: `BaSui01/snow-app-skills`
-4. Subdirectory: `skills/<skill-name>` (for example `skills/plan-execute`).
+4. Subdirectory: `skills` discovers every skill in one install; use `skills/<skill-name>` to install a single one.
 5. Enable it, then refresh the tool list.
 
 The install record pins a commit SHA. Reinstall to pick up updates.
